@@ -1,0 +1,15 @@
+1) SELECT * FROM clientes;
+2) SELECT nombre FROM provincias;
+3) (subconsulta) Mostrar Los clientes con el apellido mas común
+4) SELECT * FROM productos ORDER BY precio DESC LIMIT 3;
+5) SELECT * FROM ciudades ORDER BY poblacion DESC;
+6) SELECT * FROM provincias WHERE habitantes BETWEEN 100000 AND 1000000;
+7) SELECT c.nombre, c.apellido, ciu.nombre AS ciudad FROM clientes c JOIN ciudades ciu ON c.localidad = ciu.id;
+8) SELECT ciu.nombre AS ciudad, p.nombre AS provincia FROM ciudades ciu JOIN provincias p ON ciu.provincia_id = p.id;
+9) SELECT SUM(stock) AS stock_total FROM productos;
+10) SELECT AVG(precio) AS precio_promedio FROM productos;
+11) SELECT COUNT(*) AS total_clientes FROM clientes;
+12) SELECT * FROM ciudades ORDER BY poblacion DESC LIMIT 3;
+13) SELECT * FROM productos WHERE stock < 10;
+14) (subconsulta) Mostrar el total gastado por cliente
+15) SELECT * FROM compras ORDER BY fecha DESC LIMIT 1;
