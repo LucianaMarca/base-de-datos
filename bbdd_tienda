@@ -1,0 +1,72 @@
+DROP DATABASE IF EXISTS practica_3;
+CREATE DATABASE IF NOT EXISTS practica_3;
+USE practica_3;
+
+
+CREATE TABLE provincias (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(60),
+    habitantes INT
+);
+
+CREATE TABLE ciudades (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(60),
+    poblacion INT,
+    provincia_id INT,
+    FOREIGN KEY (provincia_id) REFERENCES provincias(id)
+);
+
+CREATE TABLE clientes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(60),
+    apellido VARCHAR(60),
+    tel VARCHAR(20),
+    calle VARCHAR(40),
+    altura INT,
+    localidad INT,
+    FOREIGN KEY (localidad) REFERENCES ciudades(id)
+);
+
+CREATE TABLE productos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    descripcion VARCHAR(60),
+    marca VARCHAR(40),
+    precio DECIMAL(10,2),
+    stock INT
+);
+
+CREATE TABLE compras (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fecha DATE,
+    cliente INT NOT NULL,
+    producto INT NOT NULL,
+    cant INT DEFAULT 1,
+    FOREIGN KEY (cliente) REFERENCES clientes(id),
+    FOREIGN KEY (producto) REFERENCES productos(id)
+);
+
+
+INSERT INTO provincias(nombre, habitantes) VALUES 
+("Buenos Aires", 17500000), ("Cordoba", 3800000), ("Santa Fe", 3500000), 
+("Chubut", 600000), ("San Luis", 500000);
+
+INSERT INTO ciudades(nombre, poblacion, provincia_id) VALUES 
+("CABA", 3000000, 1), ("Carlos Paz", 62000, 2), ("Santa Fe", 400000, 3), 
+("Rawson", 31000, 4), ("San Luis", 170000, 5);
+
+INSERT INTO clientes(nombre, apellido, tel, calle, altura, localidad) VALUES 
+("Luciana", "Marca", "1123456789", "Calle 1", 2345, 1),
+("Maria", "Gonzales", "1123456789", "Calle 2", 6747, 2),
+("Sofia", "Gonzales", "1123456789", "Calle 3", 7455, 3),
+("Juana", "Nose", "1123456789", "Calle 4", 3455, 4),
+("Paula", "Pe", "1123456789", "Calle 5", 0789, 5);
+
+INSERT INTO productos(descripcion, marca, precio, stock) VALUES 
+("Computadora", "HP", 850000.00, 5), ("Celular", "Xiaomi", 100000.00, 15), 
+("Impresora", "Dell", 75000.00, 8), ("Monitor", "Samsung", 200000.00, 12), ("Teclado", "Razer", 150000.00, 50);
+
+
+INSERT INTO compras(fecha, cliente, producto, cant) VALUES 
+('2022-11-11', 1, 1, 1), ('2024-02-02', 2, 2, 2), ('2025-03-03', 3, 3, 1), 
+('2019-07-07', 4, 4, 1), ('2026-01-01', 5, 5, 2);
